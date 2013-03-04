@@ -6,11 +6,14 @@ Gem::Specification.new do |s|
   s.name        = "wulin_master"
   s.version     = WulinMaster::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["TODO: Write your name"]
-  s.email       = ["TODO: Write your email address"]
+  s.authors     = ["Maxime Guilbot"]
+  s.email       = ["maxime@ekohe.com"]
   s.homepage    = "http://rubygems.org/gems/wulin_master"
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = %q{Wulin Master fight for enterprise problem}
+  s.description = %q{WulinMaster is a grid plugin base on ruby on rails and SlickGrid. 
+                    It provide powerfull generator and other tools to make grids easy to build, 
+                    it also provides flexible configuration, you can easily configure your grid, a 
+                    beautiful ui base on jqueryui and other good features.}
 
   s.rubyforge_project = "wulin_master"
 
