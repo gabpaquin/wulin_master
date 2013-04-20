@@ -44,31 +44,45 @@
                 :disabled          => column.options[:auto_fill]    |
 
             - elsif column.options[:choices].present?
-              - remote_paths << select_tag_fetch_path(column)
-              = select_tag "#{model_name}[#{column_name}]",          |
-                select_tag_options(column),                          |
-                :style             => "width:250px",                 |
-                :class             => 'chzn-select',                 |
-                :disabled          => column.options[:auto_fill],    |
-                "data-target"      => "#{column_name}_target_flag",  |
-                "data-remote-path" => select_tag_fetch_path(column), |
-                "data-text-attr"   => column.option_text_attribute,  |
-                "data-column"      => column.name                    |
-              - if column.options[:depend_column].present?
-                :javascript
-                  $(function(){
-                    var depend_select_id = "#{model_name}_#{column.options[:depend_column]}";
-                    var depend_select = $("select#" + depend_select_id);
+              - if column.options[:editor] == 'HasManyEditor'
+                = form.select column_name,                            |
+                  select_options(column),                             |
+                  { include_blank: true },                            |
+                  :include_blank     => !column.presence_required?,   |
+                  :multiple          => true,                         |
+                  :class             => 'chzn-select',                |
+                  :style             => "width:250px",                |
+                  "data-remote-path" => fetch_path(column),           |
+                  "data-text-attr"   => column.option_text_attribute, |
+                  "data-target"      => "#{column_name}_target_flag", |
+                  "data-column"      => column.name,                  |
+                  :disabled          => column.options[:auto_fill]    |
+              - else
+                - remote_paths << select_tag_fetch_path(column)
+                = select_tag "#{model_name}[#{column_name}]",          |
+                  select_tag_options(column),                          |
+                  :style             => "width:250px",                 |
+                  :class             => 'chzn-select',                 |
+                  :disabled          => column.options[:auto_fill],    |
+                  "data-target"      => "#{column_name}_target_flag",  |
+                  "data-remote-path" => select_tag_fetch_path(column), |
+                  "data-text-attr"   => column.option_text_attribute,  |
+                  "data-column"      => column.name                    |
+                - if column.options[:depend_column].present?
+                  :javascript
+                    $(function(){
+                      var depend_select_id = "#{model_name}_#{column.options[:depend_column]}";
+                      var depend_select = $("select#" + depend_select_id);
 
-                    depend_select.live('change', function(){
-                      var current_select_id = "#{model_name}_#{column_name}";
-                      var current_select = $("select#" + current_select_id);
-                      var key = $(this).val();
-                      current_select.find("option").hide().trigger("liszt:updated");
-                      current_select.val("").trigger("liszt:updated");
-                      current_select.find("option[data-key=" + key + "]").show().trigger("liszt:updated");
+                      depend_select.live('change', function(){
+                        var current_select_id = "#{model_name}_#{column_name}";
+                        var current_select = $("select#" + current_select_id);
+                        var key = $(this).val();
+                        current_select.find("option").hide().trigger("liszt:updated");
+                        current_select.val("").trigger("liszt:updated");
+                        current_select.find("option[data-key=" + key + "]").show().trigger("liszt:updated");
+                      });
                     });
-                  });
                   
             - elsif column.options[:file]
               = form.file_field column_name, "data-target" => "#{column_name}_target_flag", "data-column" => column.name, :style => 'width: 250px'
