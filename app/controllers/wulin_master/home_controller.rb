@@ -42,7 +42,6 @@ module WulinMaster
       end
 
       def item(title_or_screen_class, options={})
-        binding.pry
         return unless @menu
         screen_instance = title_or_screen_class.new(options, context) if title_or_screen_class.kind_of?(Class)
 
