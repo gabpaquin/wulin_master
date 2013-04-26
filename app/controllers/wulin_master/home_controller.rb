@@ -31,17 +31,18 @@ module WulinMaster
       end
 
       # Called within the block
-      def submenu(title=nil)
+      def submenu(title=nil,role=nil)
         if block_given?
           @submenu = SubMenu.new(title)
           yield
-          @menu << @submenu if @submenu.size > 0
+          @menu << [@submenu, role] if @submenu.size > 0
           @submenu = nil
         end 
         return @submenu   
       end
 
       def item(title_or_screen_class, options={})
+        binding.pry
         return unless @menu
         screen_instance = title_or_screen_class.new(options, context) if title_or_screen_class.kind_of?(Class)
 
