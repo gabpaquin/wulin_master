@@ -31,6 +31,10 @@ module WulinMasterGridHelper
   def date_column?(column)
     'true' if column.sql_type.to_s.downcase == 'date' || column.options[:editor] == 'StandardDateCellEditor'
   end
+
+  def daterange_column?(column)
+    'true' if column.options[:editor] == 'DateRangeCellEditor'
+  end
   
   def datetime_column?(column)
     'true' if column.sql_type.to_s.downcase == 'datetime' || column.options[:editor] == 'DateTimeCellEditor'
