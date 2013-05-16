@@ -113,5 +113,7 @@
       beforeShow: function() { calendarOpen = true },
       onClose: function() { calendarOpen = false }
     });
-    $('input[data-time]').timepicker({});
+    $('input[data-time]').mouseenter(function() {
+      $(this).timepicker({ 'scrollDefaultTime': '1:00pm'});
+    });
   
