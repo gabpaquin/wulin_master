@@ -92,7 +92,7 @@
               - if column.sql_type.to_s.downcase == 'boolean'
                 = form.check_box column_name, :readonly => column.options[:auto_fill], "data-target" => "#{column_name}_target_flag", "data-column" => column.name
               - else
-                = form.text_field column_name, :style => 'width: 250px', :value => column.value(object), :readonly => column.options[:auto_fill], "data-target" => "#{column_name}_target_flag", 'data-date' => date_column?(column), 'data-datetime' => datetime_column?(column), 'data-time' => time_column?(column), "data-column" => column.name
+                = form.text_field column_name, :style => 'width: 250px', :value => column.value(object), :readonly => column.options[:auto_fill], "data-target" => "#{column_name}_target_flag", 'data-date' => date_column?(column), 'data-daterange' => daterange_column?(column), 'data-datetime' => datetime_column?(column), 'data-time' => time_column?(column), "data-column" => column.name
             .field_error
       .submit
         %input.btn.success{:id => "#{@grid.name}_submit", :name => "commit", :type => "submit", :value => " Create "}/
@@ -102,6 +102,7 @@
   :javascript
     $('.chzn-select:not([data-remote-path])').chosen();
     $('input[data-date]').datepicker({ dateFormat: 'yy-mm-dd' });
+    $('input[data-daterange]').daterangepicker();
     $('input[data-datetime]').datetimepicker({
       onlyTime: false,
       dateFormat: "yy-mm-dd",
@@ -112,5 +113,8 @@
       beforeShow: function() { calendarOpen = true },
       onClose: function() { calendarOpen = false }
     });
-    $('input[data-time]').timepicker({});
+    $('input[data-time]').mouseenter(function() {
+      $(this).timepicker({ 'scrollDefaultTime': '1:00pm'});
+    });
+    loadNewFormJS("#{@grid.name}_form");
   
