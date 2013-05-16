@@ -1,7 +1,7 @@
 module WulinMaster
   class HomeController < ApplicationController
 
-    def index
+    def index      
       dashboard if self.respond_to?(:dashboard)
       respond_to do |format|
         format.html do
@@ -48,8 +48,7 @@ module WulinMaster
         title = options[:label] ||
                 (title_or_screen_class.respond_to?(:title) ? title_or_screen_class.title : title_or_screen_class.to_s)
         path = options[:url] ||
-               (screen_instance.respond_to?(:path) ? screen_instance.path : '/')
-
+               (screen_instance.respond_to?(:path) ? screen_instance.path : '/')        
         if options[:authorized?]
           if options[:authorized?].kind_of?(Proc)
             is_authorized = (context && context.respond_to?(:current_user)) ? options[:authorized?].call(context.current_user) : options[:authorized?].call(nil)

@@ -1,7 +1,7 @@
 module WulinMaster
   class FetchOptionsController < ::ActionController::Metal
     
-    def index
+    def index     
       if authorized? and params[:text_attr].present?
         if klass.column_names.include? params[:text_attr]
           objects = klass.select("id, #{params[:text_attr]}").order("#{params[:text_attr]} ASC").all

@@ -8,6 +8,7 @@
   #menu{style: "top: #{WulinMaster.config.app_title_height}"}
     %ul
       - controller.menu.each do |menu_entry|
+        - binding.pry
         - if menu_entry.is_submenu?
           %li.submenu
             %a{:href => "#"}
