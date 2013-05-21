@@ -134,7 +134,7 @@ var Ui = {
             $.each(itemdata, function(index, value) {
               if (typeof value.depend_column_array !== 'undefined') {
                 $(value.depend_column_array).each(function(index, subject) {
-                  target.append("<option value='" + subject[0] + "' data-key='"+ value.id +"'>" + subject[1] + "</option>");
+                  target.append("<option value='" + subject[0] + "' data-key='"+ value.id +"'style='display:none;'>" + subject[1] + "</option>");
                 });
               }
               else {
