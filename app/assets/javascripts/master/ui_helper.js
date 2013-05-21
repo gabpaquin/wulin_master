@@ -152,10 +152,10 @@ var Ui = {
       });
     }
     
-    first_input = $( '#' + name + '_form input:text' ).first();
+    /* first_input = $( '#' + name + '_form input:text' ).first();
     if ($.isEmptyObject(first_input.attr('data-date'))) {
       first_input.focus();
-    }
+    }*/
   },
   
   setupChosen: function(path, monitor) {
