@@ -114,7 +114,14 @@ var Ui = {
       onClose: function() { calendarOpen = false }
     });
     //$('#' + name + '_form input[data-time]').timepicker({});
-    $('#' + name + '_form input[data-time]').timepicker({ 'scrollDefaultTime': '1:00pm'});
+    $('#' + name + '_form input[data-time]').parent().addClass('bootstrap-timepicker');
+    //$('#' + name + '_form input[data-time]').timepicker({ 'scrollDefaultTime': '1:00pm'});
+    $('#' + name + '_form input[data-time]').timepicker({
+      minuteStep: 10,
+      showInputs: true,
+      disableFocus: true,
+      defaultTime: '01:00 PM'
+    });
     loadNewFormJS('#' + name + '_form');
     if ($('#' + name + '_form #remote_paths').val()) {
       // Fetch options of select box by ajax 
