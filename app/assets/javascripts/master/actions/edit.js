@@ -141,8 +141,9 @@ var checkTheBox = function(name) {
   scope.off('keyup', 'input:text, input:password').on('keyup', 'input:text, input:password', function(e) {
     $('input.target_flag:checkbox[data-target="' + $(e.currentTarget).attr('data-target') + '"]').attr('checked', 'checked');
   });
-  scope.off('change', 'input:checkbox, input:file').on('change', 'input:checkbox:not(.target_flag), input:file', function(e) {
+  scope.off('change', 'input:checkbox, input:file').on('change', 'select, input:checkbox:not(.target_flag), input:file', function(e) {
     $('input.target_flag:checkbox[data-target="' + $(e.currentTarget).attr('data-target') + '"]').attr('checked', 'checked');
+    console.log('checked trigger!');
   });
   
   // Date picker \ datetime picker \ time picker
