@@ -143,7 +143,6 @@ var checkTheBox = function(name) {
   });
   scope.off('change', 'input:checkbox, input:file').on('change', 'select, input:checkbox:not(.target_flag), input:file', function(e) {
     $('input.target_flag:checkbox[data-target="' + $(e.currentTarget).attr('data-target') + '"]').attr('checked', 'checked');
-    console.log('checked trigger!');
   });
   
   // Date picker \ datetime picker \ time picker
