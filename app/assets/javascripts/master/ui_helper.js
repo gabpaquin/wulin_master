@@ -102,6 +102,7 @@ var Ui = {
     var  remotePath;
     $('#' + name + '_form .chzn-select:not([data-remote-path])').chosen();
     $('#' + name + '_form input[data-date]').datepicker({ dateFormat: 'yy-mm-dd' });
+    $('#' + name + '_form input[data-daterange]').daterangepicker();
     $('#' + name + '_form input[data-datetime]').datetimepicker({
       onlyTime: false,
       dateFormat: "yy-mm-dd",
@@ -112,8 +113,16 @@ var Ui = {
       beforeShow: function() { calendarOpen = true },
       onClose: function() { calendarOpen = false }
     });
-    $('#' + name + '_form input[data-time]').timepicker({});
-    
+    //$('#' + name + '_form input[data-time]').timepicker({});
+    $('#' + name + '_form input[data-time]').parent().addClass('bootstrap-timepicker');
+    //$('#' + name + '_form input[data-time]').timepicker({ 'scrollDefaultTime': '1:00pm'});
+    $('#' + name + '_form input[data-time]').timepicker({
+      minuteStep: 10,
+      showInputs: true,
+      disableFocus: true,
+      defaultTime: '01:00 PM'
+    });
+    loadNewFormJS('#' + name + '_form');
     if ($('#' + name + '_form #remote_paths').val()) {
       // Fetch options of select box by ajax 
       remotePath = $('#' + name + '_form #remote_paths').val().split(',');
@@ -128,8 +137,16 @@ var Ui = {
         if ($.isEmptyObject(window._jsonData[path])) {
           $.getJSON(path, function(itemdata){
             window._jsonData[path] = itemdata;
+            target.append("<option value=''></option>");
             $.each(itemdata, function(index, value) {
-              target.append("<option value='" + value.id + "'>" + value[textAttr] + "</option>");
+              if (typeof value.depend_column_array !== 'undefined') {
+                $(value.depend_column_array).each(function(index, subject) {
+                  target.append("<option value='" + subject[0] + "' data-key='"+ value.id +"'style='display:none;'>" + subject[1] + "</option>");
+                });
+              }
+              else {
+                target.append("<option value='" + value.id + "'>" + value[textAttr] + "</option>");
+              }
             });
             Ui.setupChosen(path, monitor);
           });
@@ -142,10 +159,10 @@ var Ui = {
       });
     }
     
-    first_input = $( '#' + name + '_form input:text' ).first();
+    /* first_input = $( '#' + name + '_form input:text' ).first();
     if ($.isEmptyObject(first_input.attr('data-date'))) {
       first_input.focus();
-    }
+    }*/
   },
   
   setupChosen: function(path, monitor) {

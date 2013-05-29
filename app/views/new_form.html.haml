@@ -78,9 +78,9 @@
                         var current_select_id = "#{model_name}_#{column_name}";
                         var current_select = $("select#" + current_select_id);
                         var key = $(this).val();
-                        current_select.find("option").hide().trigger("liszt:updated");
+                        current_select.find("option").css('display','none').trigger("liszt:updated");
                         current_select.val("").trigger("liszt:updated");
-                        current_select.find("option[data-key=" + key + "]").show().trigger("liszt:updated");
+                        current_select.find("option[data-key=" + key + "]").css('display','list-item').trigger("liszt:updated");
                       });
                     });
                   
@@ -100,21 +100,4 @@
       = hidden_field_tag 'remote_paths', j(remote_paths.uniq.compact.join(','))
 
   :javascript
-    $('.chzn-select:not([data-remote-path])').chosen();
-    $('input[data-date]').datepicker({ dateFormat: 'yy-mm-dd' });
-    $('input[data-daterange]').daterangepicker();
-    $('input[data-datetime]').datetimepicker({
-      onlyTime: false,
-      dateFormat: "yy-mm-dd",
-      timeFormat: 'hh:mm',
-      timeOnly: false,
-      stepMinute: 1,
-      minuteGrid: 0,
-      beforeShow: function() { calendarOpen = true },
-      onClose: function() { calendarOpen = false }
-    });
-    $('input[data-time]').mouseenter(function() {
-      $(this).timepicker({ 'scrollDefaultTime': '1:00pm'});
-    });
-    loadNewFormJS("#{@grid.name}_form");
-  
+    window._jsonData = {};
