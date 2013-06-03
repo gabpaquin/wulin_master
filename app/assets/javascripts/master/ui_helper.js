@@ -120,7 +120,8 @@ var Ui = {
       minuteStep: 10,
       showInputs: true,
       disableFocus: true,
-      defaultTime: '01:00 PM'
+      showMeridian: false,
+      defaultTime: false
     });
     loadNewFormJS('#' + name + '_form');
     if ($('#' + name + '_form #remote_paths').val()) {
