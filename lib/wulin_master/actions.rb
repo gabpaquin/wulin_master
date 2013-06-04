@@ -77,7 +77,7 @@ module WulinMaster
       end
     end
 
-    def update  
+    def update
       ids = params[:id].to_s.split(',')
       @records = grid.model.find(ids)
       param_attrs = params[:item].presence || params[ActiveModel::Naming.param_key(grid.model).to_sym].presence
