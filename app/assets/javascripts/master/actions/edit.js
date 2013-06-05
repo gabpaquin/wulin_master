@@ -153,14 +153,7 @@ var checkTheBox = function(name) {
   // Date picker \ datetime picker \ time picker \ Date range picker \ date picker
   scope.off('change', 'input[data-time]').on('change', 'input[data-time]', function(e) {
     $('input.target_flag:checkbox[data-target="' + $(e.currentTarget).attr('data-target') + '"]').attr('checked', 'checked');
-  });  
-
-  // Date picker \ datetime picker \ time picker \ Date range picker \ date picker
-  scope.off('change', 'input#schedule_date_range').on('change', 'input#schedule_date_range', function(e) {
-    $('input.target_flag:checkbox[data-target="' + $(e.currentTarget).attr('data-target') + '"]').attr('checked', 'checked');
-  });  
-
-
+  });
 
   // Empty input box when flag change to unchecked
   scope.off('change', 'input.target_flag:visible').on('change', 'input.target_flag:visible', function(){
