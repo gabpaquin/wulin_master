@@ -121,6 +121,7 @@ var Ui = {
       showInputs: true,
       disableFocus: true,
       showMeridian: false,
+      defaultTime: '12:00'
       defaultTime: false
     });
     loadNewFormJS('#' + name + '_form');
