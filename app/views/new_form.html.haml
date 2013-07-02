@@ -4,12 +4,12 @@
     columns = @grid.columns.dup.delete_if {|x| x.name.to_s == 'id' }
     datepicker_str = ''
     object = @grid.model.new
-    remote_paths = []
-  .create_form{:id => "#{@grid.name}_form", :title => "Create new #{model_name.titleize}"}
-    = form_for object, :url => @grid.path do |form|
-      - columns.each do |column|
+    remote_paths = []  
+  .create_form{:id => "#{@grid.name}_form", :title => "Create new #{model_name.titleize}"}  
+    = form_for object, :url => @grid.path do |form|    
+      - columns.each do |column|        
         - if new_form_able?(column)
-          :ruby
+          :ruby            
             column_name = get_column_name(column)
             label = column.options[:form_label] || column.label
           .field{:name => column_name}

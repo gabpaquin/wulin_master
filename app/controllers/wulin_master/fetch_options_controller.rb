@@ -36,12 +36,12 @@ module WulinMaster
     
     private
     
-    def authorized?
+    def authorized?      
       return true unless self.respond_to?(:current_user)
       current_user && column_belongs_to_grid? && column_screen && authorized_for_user?
     end
     
-    def authorized_for_user?
+    def authorized_for_user?      
       controller = column_controller_class.new
       screen = column_screen.new({}, controller)
       !screen.respond_to?(:authorized?) || (screen.respond_to?(:authorized?) && screen.authorized?(current_user))
