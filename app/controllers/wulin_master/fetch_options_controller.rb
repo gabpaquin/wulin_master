@@ -60,7 +60,7 @@ module WulinMaster
     end
     
     def klass
-      column.reflection.try(:klass) || params[:klass].safe_constantizepake
+      column.reflection.try(:klass) || params[:klass].safe_constantize
     end
     
     def column
