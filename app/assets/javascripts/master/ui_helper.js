@@ -124,7 +124,7 @@ var Ui = {
       defaultTime: '12:00',
       defaultTime: false
     });
-    loadNewFormJS('#' + name + '_form');
+    //loadNewFormJS('#' + name + '_form');
     if ($('#' + name + '_form #remote_paths').val()) {
       // Fetch options of select box by ajax 
       remotePath = $('#' + name + '_form #remote_paths').val().split(',');
